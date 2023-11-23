@@ -5,8 +5,6 @@
 #define MAX 100
 #define MAX_GESAMT 200
 
-//LEVIN ICH SEHE DICH !
-
 struct nameList //Struct erstellt 
 {
     char *list1[MAX];
