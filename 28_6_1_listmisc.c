@@ -33,7 +33,7 @@ void eingabe(struct nameList *ptr)
 
         int listNr = 0;
         printf("Welche Liste (1 oder 2): "); //Einlesen der Liste
-        while (scanf("%d", &listNr) != 1 || (listNr != 1 && listNr != 2))   //Überprufung auf Ungleich 1 und 2
+        while (scanf("%d", &listNr) != 1 || (listNr != 1 && listNr != 2))   //Überprufungy auf Ungleich 1 und 2
         {
             printf("Falsche Eingabe. Bitte 1 oder 2 wählen: ");
             while (getchar() != '\n');
@@ -42,31 +42,21 @@ void eingabe(struct nameList *ptr)
         
         if (listNr == 1)    //Schreiben in die Liste im struct
         {
-            ptr->list1[ptr->list1Anzahl] = (char*)malloc(strlen(input)+1); //Speicher freigeben und /0 (Deshalb +1)
+            ptr->list1[ptr->list1Anzahl] = (char*)malloc((strlen(input)+1)*sizeof(char)); //Speicher freigeben und /0 (Deshalb +1)
             strcpy(ptr->list1[ptr->list1Anzahl],input); //Eingabestring in die Liste copieren
             (ptr->list1Anzahl)++;
         }
         else if (listNr == 2)
         {
-            ptr->list2[ptr->list2Anzahl] = (char*)malloc(strlen(input)+1); //Speicher freigeben und /0 (Deshalb +1)
+            ptr->list2[ptr->list2Anzahl] = (char*)malloc((strlen(input)+1)*sizeof(char)); //Speicher freigeben und /0 (Deshalb +1)
             strcpy(ptr->list2[ptr->list2Anzahl],input); //Eingabestring in die Liste copieren
             (ptr->list2Anzahl)++;
         }
         printf("Name (Beenden mit Enter): ");
     }
  }
-static int compareName(const void *vergleich1, const void *vergleich2){
-
-    int ausgabe = stricmp(*(char**)vergleich1,*(char**)vergleich2);  //char** Zeiger auf die Zeichekentte die verglichen wird Rückgabe 0 bei Gleichheit >0 Zeichen größer, <0 kleiner
-    if (ausgabe > 0)
-    {
-        int lengthName1 = strlen(*(char**)vergleich1) +1;   //Laenge deffinieren
-        int lengthName2 = strlen(*(char**)vergleich2) +1;   //Laenge deffinieren
-
-        *(char**)vergleich1 = (char*)realloc( *(char**)vergleich1, lengthName1);   //Deffinieren des neuen Speichers wegen switch
-        *(char**)vergleich2 = (char*)realloc( *(char**)vergleich2, lengthName2);   //Deffinieren des neuen Speichers wegen switch
-    }
-    return ausgabe;
+static int compareName(const void *vergleich1, const void *vergleich2) {
+    return strcasecmp(*(const char**)vergleich1, *(const char**)vergleich2);
 }
 void listSort(struct nameList *ptr){
 
