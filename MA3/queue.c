@@ -46,8 +46,8 @@ Bool put(int zahl)
 	if (neuerDatenpunkt == 0)
 		return -1;
 
-	neuerDatenpunkt->Datenpunkt = zahl;
-	neuerDatenpunkt->weiter = 0;
+	neuerDatenpunkt->Datenpunkt = zahl; //Zahl wird in den Structschlange reinkopiert
+	neuerDatenpunkt->weiter = 0; //
 
 	if (start == 0) // Am Anfang den Startzeiger auf den ersten Wert legen , sonst den Endzeiger bei neuen Zahlen weiterschieben
 	{
